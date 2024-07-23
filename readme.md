@@ -18,9 +18,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
- <groupId>com.arthpay</groupId>
- <artifactId>arthpay-java-integration-kit</artifactId>
- <version>1.0.0</version>
+  <groupId>com.arthpay</groupId>
+  <artifactId>arthhpay-java</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 
