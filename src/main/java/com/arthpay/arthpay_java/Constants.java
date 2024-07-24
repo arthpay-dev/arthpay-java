@@ -7,9 +7,9 @@ public class Constants {
 	  static final String SCHEME = "http";
 	  static final String API = "API";
 	  static final String AUTH = "AUTH";
-	  static final String HOSTNAME = "localhost";
+	  static final String HOSTNAME = "172.20.10.14";
 	  static final String AUTH_HOSTNAME = "callback.arthpay.com/merchant";
-	  static final Integer PORT = 8080;
+	  static final Integer PORT = 443;
 	  static final String VERSION = "v1";
 
 	  static final String VERSION_V2 = "v2";
@@ -24,11 +24,14 @@ public class Constants {
 	  static final String HTTP_HEADER_APPLICATION_JSON = "application/json";
 
 	  
-	  static final String ORDER_CREATE = "/wrp/merchant/orderCreate";
-	  static final String ORDER_GET = "/wrp/merchant/orderCreate/%s";
-	  static final String ORDER_EDIT = "/wrp/merchant/orderCreate/%s";
-	  static final String ORDER_LIST = "/wrp/merchant/orderCreate";
-	  static final String ORDER_PAYMENT_LIST = "/wrp/merchant/orderCreate/%s/payments";
+	  static final String ORDER_CREATE = "/wrapper/merchant/orderCreate";
+	  static final String ORDER_STATUS = "/wrapper/merchant/orderStatus";
+	  static final String ORDER_EDIT = "/wrapper/merchant/orderCreate/%s";
+	  static final String ORDER_LIST = "/wrapper/merchant/orderCreate";
+	  static final String ORDER_PAYMENT_LIST = "/wrapper/merchant/orderCreate/%s/payments";
 	  
-	  static final String AES_KEY_PATH = "http://localhost:8080/keys/aeskey.pem";
+	  static final String WRAP_ORD_STATUS_INITIATED = "INIT";
+	  static final String WRAP_ORD_STATUS_PENDING = "PENDING";
+	  static final String WRAP_ORD_STATUS_SUCCESS = "SUCCESS";
+	  
 }

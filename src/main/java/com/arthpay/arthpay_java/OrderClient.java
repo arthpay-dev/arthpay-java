@@ -13,22 +13,39 @@ public class OrderClient {
 	
 	String auth;
 	private static Gson gson = new Gson();
+	String orderId;
 	private enum Method {
 	    GET, POST, PUT, PATCH, DELETE
-	  }
-	  OrderClient(String auth) {
-		  this.auth = auth;
-	  }
+	}
+	OrderClient(String auth) {
+		this.auth = auth;
+	}
 	
 	  public String create(String request) throws ArthpayException {
-	    return postRequest(Constants.VERSION, Constants.ORDER_CREATE, request, auth);
+		var response = postRequest(Constants.VERSION, Constants.ORDER_CREATE, request, auth);
+		orderId = response.getMsg();
+		System.out.println("order id : "+response.getMsg());
+	    return response.getObj().toString();
 	  }
-	  private static String postRequest(String version, String path, String requestObject, String auth)
+	  
+	  public String checkStatus() throws ArthpayException {
+		  if(orderId==null)
+			  return "Please create order prior to checking status";
+		  
+		  OrderStatusPojo status = new OrderStatusPojo();
+		  status.setOrderId(orderId);
+		  
+		  var requestJson = gson.toJson(status);
+		  return postRequest(Constants.VERSION, Constants.ORDER_STATUS, requestJson, auth).getObj().toString();
+	  }
+
+	  
+	  private static ResponsePojo postRequest(String version, String path, String requestObject, String auth)
 	          throws ArthpayException {
 	    return postCreateRequest(version, path, requestObject, auth, Constants.API);
 	  }
 	 
-	  private static String postCreateRequest(String version, String path, String requestObject, String auth, String host) throws ArthpayException {
+	  private static ResponsePojo postCreateRequest(String version, String path, String requestObject, String auth, String host) throws ArthpayException {
 
 		  try {
 		  URIBuilder builder = ApiUtility.getBuilder(version, path, host);
@@ -48,12 +65,13 @@ public class OrderClient {
 			HttpResponse response = ApiUtility.processRequest(request);
 			var responseObj = gson.fromJson(response.body().toString(), ResponsePojo.class);
 			
-			return responseObj.getObj().toString();
+			return responseObj;
 		  }
 		  catch (Exception e) {
 			  throw new ArthpayException(e.getMessage());
 		  }
 	  }
+	  
 	  private static HttpRequest postOrder(String method, String url, String requestBody,
 		      String auth) throws ArthpayException {
 		  System.out.println("createRequest | url is : "+url);
@@ -83,5 +101,5 @@ public class OrderClient {
 		    }
 
 		    return builder.build();
-	  }
+	  }	  
 }

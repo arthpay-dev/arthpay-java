@@ -7,7 +7,7 @@ public class ResponsePojo<T> {
 	private HttpStatusCode statusCode;
 	private int sttusCode;
 	
-	private String errMsg;
+	private String msg;
 	
 	private T obj;
 	
@@ -17,29 +17,29 @@ public class ResponsePojo<T> {
 	}
 
 	
-	public ResponsePojo(HttpStatusCode statusCode, String errMsg) {
+	public ResponsePojo(HttpStatusCode statusCode, String Msg) {
 		super();
 		this.statusCode = statusCode;
-		this.errMsg = errMsg;
+		this.msg = Msg;
 	}
 
-	public ResponsePojo(HttpStatusCode statusCode, String errMsg, T obj) {
+	public ResponsePojo(HttpStatusCode statusCode, String Msg, T obj) {
 		super();
 		this.statusCode = statusCode;
-		this.errMsg = errMsg;
+		this.msg = Msg;
 		this.obj = obj;
 	}
 	
-	public ResponsePojo(int sttusCode, String errMsg) {
+	public ResponsePojo(int sttusCode, String Msg) {
 		super();
 		this.sttusCode = sttusCode;
-		this.errMsg = errMsg;
+		this.msg = Msg;
 	}
 	
-	public ResponsePojo(int sttusCode, String errMsg, T obj) {
+	public ResponsePojo(int sttusCode, String Msg, T obj) {
 		super();
 		this.sttusCode = sttusCode;
-		this.errMsg = errMsg;
+		this.msg = Msg;
 		this.obj = obj;
 	}
 
@@ -60,12 +60,12 @@ public class ResponsePojo<T> {
 	}
 
 
-	public String getErrMsg() {
-		return errMsg;
+	public String getMsg() {
+		return msg;
 	}
 
-	public void setErrMsg(String errMsg) {
-		this.errMsg = errMsg;
+	public void setMsg(String Msg) {
+		this.msg = Msg;
 	}
 
 	public T getObj() {

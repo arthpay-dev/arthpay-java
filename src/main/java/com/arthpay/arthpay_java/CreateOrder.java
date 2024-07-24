@@ -14,4 +14,8 @@ public class CreateOrder extends OrderClient {
 	public String create(CreateOrderRequest request) throws Exception{		
 		return create(gson.toJson(request));
 	}
+	
+	public String orderStatus() throws Exception {
+		return checkStatus();
+	}
 }

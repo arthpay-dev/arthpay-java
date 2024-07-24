@@ -163,7 +163,7 @@ public class ApiUtility {
 		        builder = getAPIBuilder(version, path);
 		        break;
 		      case Constants.AUTH:
-		        builder = getOAuthBuilder(path);
+		        builder = getOAuthBuilder(path);	
 		        break;
 		      default:
 		        builder = getAPIBuilder(version, path);
@@ -175,7 +175,7 @@ public class ApiUtility {
 		    return new URIBuilder()
 		    		.setScheme(Constants.SCHEME)
 		    		.setHost(Constants.HOSTNAME)
-		    		.setPort(Constants.PORT)
+//		    		.setPort(Constants.PORT)
 		    		.setPath(path);
 		    		//(Constants.SCHEME,null, Constants.HOSTNAME,Constants.PORT, path, null,null);
 	  }
@@ -183,8 +183,8 @@ public class ApiUtility {
 	  private static URIBuilder getOAuthBuilder(String path) throws ArthpayException {
 		  return new URIBuilder()
 		    		.setScheme(Constants.SCHEME)
-		    		.setHost(Constants.HOSTNAME)
-		    		.setPort(Constants.PORT);
+		    		.setHost(Constants.HOSTNAME);
+//		    		.setPort(Constants.PORT);
 	  }
 	  
 //	  private static String getMediaType(String fileName){

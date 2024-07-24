@@ -32,6 +32,11 @@ public class ArthpayJavaApplication {
 			
 			var redirectionUrl = merchant.orders.create(orderObj);
 			System.out.println("redirection Url for merchant : "+redirectionUrl);
+			
+			System.out.println("Checking order status ... ");
+			var orderStatus = merchant.orders.checkStatus();
+			
+			System.out.println("Order's status is : "+orderStatus);
 		} catch (Exception ex) {
 			System.out.println("Exception : "+ex);
 		}
