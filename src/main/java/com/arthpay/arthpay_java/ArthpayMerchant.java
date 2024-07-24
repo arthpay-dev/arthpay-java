@@ -1,4 +1,4 @@
-package com.arthpay.arthhpay_java;
+package com.arthpay.arthpay_java;
 
 import java.util.Map;
 
@@ -16,7 +16,7 @@ public class ArthpayMerchant {
 	}
 	private void initMerchant(Boolean enableLogging) throws ArthpayException {
 		ApiUtility.createHttpClientInstance(enableLogging);
-		orders = new CreateOrder(auth);
+		orders = new CreateOrder(this.auth);
 	}
 	
 	public ArthpayMerchant addHeaders(Map<String, String> headers) {

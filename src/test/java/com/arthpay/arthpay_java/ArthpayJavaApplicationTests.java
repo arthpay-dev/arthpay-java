@@ -1,10 +1,10 @@
-package com.arthpay.arthhpay_java;
+package com.arthpay.arthpay_java;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ArthhpayJavaApplicationTests {
+class ArthpayJavaApplicationTests {
 
 	@Test
 	void contextLoads() {

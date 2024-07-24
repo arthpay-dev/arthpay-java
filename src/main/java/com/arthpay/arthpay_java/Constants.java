@@ -1,15 +1,15 @@
-package com.arthpay.arthhpay_java;
+package com.arthpay.arthpay_java;
 
 import org.springframework.http.MediaType;
 
 public class Constants {
 	// API constants
-	  static final String SCHEME = "https";
+	  static final String SCHEME = "http";
 	  static final String API = "API";
 	  static final String AUTH = "AUTH";
-	  static final String HOSTNAME = "callback.arthpay.com/merchant";
-	  static final String AUTH_HOSTNAME = "callback.arthpay.com/auth";
-	  static final Integer PORT = 443;
+	  static final String HOSTNAME = "localhost";
+	  static final String AUTH_HOSTNAME = "callback.arthpay.com/merchant";
+	  static final Integer PORT = 8080;
 	  static final String VERSION = "v1";
 
 	  static final String VERSION_V2 = "v2";
@@ -24,9 +24,11 @@ public class Constants {
 	  static final String HTTP_HEADER_APPLICATION_JSON = "application/json";
 
 	  
-	  static final String ORDER_CREATE = "orderCreate";
-	  static final String ORDER_GET = "orderCreate/%s";
-	  static final String ORDER_EDIT = "orderCreate/%s";
-	  static final String ORDER_LIST = "orderCreate";
-	  static final String ORDER_PAYMENT_LIST = "orderCreate/%s/payments";
+	  static final String ORDER_CREATE = "/wrp/merchant/orderCreate";
+	  static final String ORDER_GET = "/wrp/merchant/orderCreate/%s";
+	  static final String ORDER_EDIT = "/wrp/merchant/orderCreate/%s";
+	  static final String ORDER_LIST = "/wrp/merchant/orderCreate";
+	  static final String ORDER_PAYMENT_LIST = "/wrp/merchant/orderCreate/%s/payments";
+	  
+	  static final String AES_KEY_PATH = "http://localhost:8080/keys/aeskey.pem";
 }

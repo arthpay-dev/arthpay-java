@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.arthpay</groupId>
-	<artifactId>arthhpay-java</artifactId>
+	<artifactId>arthpay-java</artifactId>
 	<version>1.0.0</version>
-	<name>arthhpay-java</name>
+	<name>arthpay-java</name>
 	<description>Official java bindings for the Arthpay API</description>
 	<url>https://github.com/arthpay-dev/arthpay-java</url>
 	<licenses>
@@ -61,7 +61,10 @@
 		    <artifactId>json</artifactId>
 		    <version>20240303</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
 		<dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>

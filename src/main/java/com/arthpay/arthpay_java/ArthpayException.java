@@ -1,4 +1,4 @@
-package com.arthpay.arthhpay_java;
+package com.arthpay.arthpay_java;
 
 public class ArthpayException extends Exception {
 

@@ -1,13 +1,18 @@
-package com.arthpay.arthhpay_java;
+package com.arthpay.arthpay_java;
 
+import java.io.ByteArrayInputStream;
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.io.Reader;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublisher;
+//import java.net.http.HttpRequest.BodyPublisher;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
@@ -15,15 +20,17 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
+//import org.json.JSONObject;
+
+//import com.google.gson.Gson;
 
 
 public class ApiUtility {
 	
 	private static HttpClient client;
-	private static Map<String, String> headers = new HashMap<String, String>();
+	public static Map<String, String> headers = new HashMap<String, String>();
 	
-	private static String version = null;
+	public static String version = null;
 	
 	static void createHttpClientInstance(boolean enableLog) throws ArthpayException {
 		if(client==null) {
@@ -44,10 +51,10 @@ public class ApiUtility {
 		}
 		Properties properties = new Properties();
 		try {
-			properties.load(ApiUtility.class.getResourceAsStream("/arthpayproject.peoperties"));
+			properties.load(new ByteArrayInputStream("1.0.0".getBytes(StandardCharsets.UTF_8)));
 			version = (String) properties.get("version");
 		} catch (Exception e) {
-		      throw new ArthpayException(e.getMessage());
+		      throw new ArthpayException(e);
 	    }
 	}
 	
@@ -55,12 +62,12 @@ public class ApiUtility {
 	    GET, POST, PUT, PATCH, DELETE
 	  }
 	
-	 static HttpResponse postRequest(String version, String path, JSONObject requestObject, String auth)
+	 static HttpResponse<String> postRequest(String version, String path, String requestObject, String auth)
 	          throws ArthpayException {
 	    return postRequest(version, path, requestObject, auth, Constants.API);
 	  }
 	 
-	  static HttpResponse postRequest(String version, String path, JSONObject requestObject, String auth, String host) throws ArthpayException {
+	  static HttpResponse<String> postRequest(String version, String path, String requestObject, String auth, String host) throws ArthpayException {
 
 		  try {
 		  URIBuilder builder = getBuilder(version, path, host);
@@ -68,12 +75,13 @@ public class ApiUtility {
 //			BodyPublisher requestBody;
 			String requestBody;
 		  
-			if(requestObject != null && requestObject.has("file")){
+			if(requestObject != null){ //&& requestObject.has("file")
 			   requestBody = null; //fileRequestBody(requestObject);
 			}else{
-			  String requestContent = requestObject == null ? "" : requestObject.toString();
-			  requestBody = requestContent;//HttpRequest.BodyPublishers.ofString(requestContent);
+//			  String requestContent = requestObject == null ? "" : requestObject.toString();
+			  requestBody = requestObject == null ? "" : requestObject;//.toString();//requestContent;//HttpRequest.BodyPublishers.ofString(requestContent);
 			}
+			System.out.println("Request body : "+requestBody);
 			
 			HttpRequest request =
 			    createRequest(Method.POST.name(), builder.build().toString(), requestBody, auth);
@@ -84,48 +92,55 @@ public class ApiUtility {
 		  }
 	  }
 	  
-	  static HttpResponse getRequest(String version, String path, JSONObject requestObject, String auth) throws ArthpayException {
-	    return getRequest(version, path, requestObject, auth, Constants.API);
-	  }
-
-	  static HttpResponse getRequest(String version, String path, JSONObject requestObject, String auth, String host) throws ArthpayException {
-		  try {
-			URIBuilder builder = getBuilder(version, path, host);
-		    addQueryParams(builder, requestObject);
-		    HttpRequest request = createRequest(Method.GET.name(), builder.build().toString(), null, auth);
-		    return processRequest(request);
-		  }
-		  catch (Exception e) {
-			  throw new ArthpayException(e.getMessage());
-		  }
-	  }
+//	  static HttpResponse getRequest(String version, String path, JSONObject requestObject, String auth) throws ArthpayException {
+//	    return getRequest(version, path, requestObject, auth, Constants.API);
+//	  }
+//
+//	  static HttpResponse getRequest(String version, String path, JSONObject requestObject, String auth, String host) throws ArthpayException {
+//		  try {
+//			URIBuilder builder = getBuilder(version, path, host);
+//		    addQueryParams(builder, requestObject);
+//		    HttpRequest request = createRequest(Method.GET.name(), builder.build().toString(), null, auth);
+//		    return processRequest(request);
+//		  }
+//		  catch (Exception e) {
+//			  throw new ArthpayException(e.getMessage());
+//		  }
+//	  }
 	  
-	  private static void addQueryParams(URIBuilder builder, JSONObject request) {
-		    if (request == null)
-		      return;
-		    
-		    
-		    Iterator<?> keys = request.keys();
-		    while (keys.hasNext()) {
-		      String key = (String) keys.next();
-		      builder.addParameter(key, request.get(key).toString());
-		    }
-		  }
+//	  private static void addQueryParams(URIBuilder builder, JSONObject request) {
+//		    if (request == null) {
+//		      return;
+//		    }
+//		    Iterator<?> keys = request.keys();
+//		    while (keys.hasNext()) {
+//		      String key = (String) keys.next();
+//		      builder.addParameter(key, request.get(key).toString());
+//		    }
+//		  }
+	  
 	  static void addHeaders(Map<String, String> header) {
 		    headers.putAll(header);
 		  }
 	  
 	  private static HttpRequest createRequest(String method, String url, String requestBody,
 		      String auth) throws ArthpayException {
+		  System.out.println("createRequest | url is : "+url);
 		  HttpRequest.Builder builder = HttpRequest.newBuilder()
 				  				.uri(URI.create(url))
 				  				.method(method, HttpRequest.BodyPublishers.ofString(requestBody));
 		  
 		  CredentialManager creds = new CredentialManager();
 		  
-		    if (auth != null && auth.equals(creds.getClientId())) {
-		    	String secret =  creds.getJwsSignature(requestBody);
-		    	builder.setHeader(Constants.HEADER_CLIENT_ID, auth);
+		  System.out.println("clientId not null : "+auth);
+		    if (auth!=null) {
+		    	var auth_secret = auth.split(",/,");
+		    	
+		    	System.out.println("Using : "+auth_secret[1]+" to encrypt!");
+		    	String secret =  creds.getJwsSignature(requestBody, auth_secret[1]);
+		    	System.out.println("secret not null : "+secret);
+		    	
+		    	builder.setHeader(Constants.HEADER_CLIENT_ID, auth_secret[0]);
 		    	builder.setHeader(Constants.HEADER_SECRET, secret);
 		    }
 
@@ -140,7 +155,7 @@ public class ApiUtility {
 	  }
 	  
 	  
-	  private static URIBuilder getBuilder(String version, String path, String host) throws ArthpayException {
+	  public static URIBuilder getBuilder(String version, String path, String host) throws ArthpayException {
 		  URIBuilder builder;
 		    switch (host)
 		    {
@@ -160,7 +175,8 @@ public class ApiUtility {
 		    return new URIBuilder()
 		    		.setScheme(Constants.SCHEME)
 		    		.setHost(Constants.HOSTNAME)
-		    		.setPort(Constants.PORT);
+		    		.setPort(Constants.PORT)
+		    		.setPath(path);
 		    		//(Constants.SCHEME,null, Constants.HOSTNAME,Constants.PORT, path, null,null);
 	  }
 
@@ -171,15 +187,16 @@ public class ApiUtility {
 		    		.setPort(Constants.PORT);
 	  }
 	  
-	  private static String getMediaType(String fileName){
-		    int extensionIndex = fileName.lastIndexOf('.');
-		    String extenionName = fileName.substring(extensionIndex + 1);
-		    if(extenionName == "jpg" | extenionName == "jpeg" | extenionName == "png" | extenionName == "jfif"){
-		      return "image/jpg";
-		    }
-		      return "image/pdf";
-	  }
-	  private static HttpResponse processRequest(HttpRequest request) throws ArthpayException {
+//	  private static String getMediaType(String fileName){
+//		    int extensionIndex = fileName.lastIndexOf('.');
+//		    String extenionName = fileName.substring(extensionIndex + 1);
+//		    if(extenionName == "jpg" | extenionName == "jpeg" | extenionName == "png" | extenionName == "jfif"){
+//		      return "image/jpg";
+//		    }
+//		      return "image/pdf";
+//	  }
+	  
+	  public static HttpResponse<String> processRequest(HttpRequest request) throws ArthpayException {
 		    try {
 		      return client.send(request, HttpResponse.BodyHandlers.ofString());
 		    } catch (Exception e) {
