@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 
 ```java
 try {
-		ArthpayMerchant merchant = new ArthpayMerchant("AP_DEV_7bYVzSdvZJrwFKvfM0EthW3E6FIWdmhU7czOaPlRVA","XkqC4PWfwtQy3Qnbk3eXbw==");
+		ArthpayMerchant merchant = new ArthpayMerchant([YOUR_CLIENT_ID],[YOUR_CLIENT_SECRET]);
 		
 		OrderPojo orderDetails = new OrderPojo();
 		orderDetails.setOrderInfo("MER_ORD_001"); //order id by merchant
