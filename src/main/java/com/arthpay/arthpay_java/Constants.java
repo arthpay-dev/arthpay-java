@@ -7,7 +7,7 @@ public class Constants {
 	  static final String SCHEME = "http";
 	  static final String API = "API";
 	  static final String AUTH = "AUTH";
-	  static final String HOSTNAME = "172.20.10.14";
+	  static final String HOSTNAME = "callback.arthpay.com/merchant";
 	  static final String AUTH_HOSTNAME = "callback.arthpay.com/merchant";
 	  static final Integer PORT = 443;
 	  static final String VERSION = "v1";
