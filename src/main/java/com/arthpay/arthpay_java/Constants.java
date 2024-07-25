@@ -4,7 +4,7 @@ import org.springframework.http.MediaType;
 
 public class Constants {
 	// API constants
-	  static final String SCHEME = "http";
+	  static final String SCHEME = "https";
 	  static final String API = "API";
 	  static final String AUTH = "AUTH";
 	  static final String HOSTNAME = "callback.arthpay.com";
