@@ -1,10 +1,11 @@
 # Arthpay Java SDK
 
-Official java bindings for the [Arthpay API](https://docs.arthpay.com/docs/payments).
+// Official java bindings for the [Arthpay API](https://docs.arthpay.com/docs/payments).
+Official java bindings for the Arthpay APIs
 
-## Documentation
+//## Documentation
 
-Documentation of Arthpay's API and their usage is available at <https://docs.arthpay.com>
+// Documentation of Arthpay's API and their usage is available at <https://docs.arthpay.com>
 
 ## Requirements
 
