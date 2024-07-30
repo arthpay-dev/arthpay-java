@@ -4,10 +4,10 @@ import org.springframework.http.HttpStatusCode;
 
 public class ResponsePojo<T> {
 
-	private HttpStatusCode statusCode;
-	private int sttusCode;
+//	private HttpStatusCode statusCode;
+	private int statusCode;
 	
-	private String msg;
+	private String errMsg;
 	
 	private T obj;
 	
@@ -15,57 +15,34 @@ public class ResponsePojo<T> {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
-	public ResponsePojo(HttpStatusCode statusCode, String Msg) {
+	public ResponsePojo(int sttusCode, String errMsg) {
 		super();
-		this.statusCode = statusCode;
-		this.msg = Msg;
-	}
-
-	public ResponsePojo(HttpStatusCode statusCode, String Msg, T obj) {
-		super();
-		this.statusCode = statusCode;
-		this.msg = Msg;
-		this.obj = obj;
+		this.statusCode = sttusCode;
+		this.errMsg = errMsg;
 	}
 	
-	public ResponsePojo(int sttusCode, String Msg) {
+	public ResponsePojo(int sttusCode, String errMsg, T obj) {
 		super();
-		this.sttusCode = sttusCode;
-		this.msg = Msg;
-	}
-	
-	public ResponsePojo(int sttusCode, String Msg, T obj) {
-		super();
-		this.sttusCode = sttusCode;
-		this.msg = Msg;
+		this.statusCode = sttusCode;
+		this.errMsg = errMsg;
 		this.obj = obj;
 	}
 
-	public HttpStatusCode getStatusCode() {
+	public int getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(HttpStatusCode statusCode) {
+	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 
-	public int getSttusCode() {
-		return sttusCode;
+	public String getErrMsg() {
+		return errMsg;
 	}
 
-	public void setSttusCode(int sttusCode) {
-		this.sttusCode = sttusCode;
-	}
-
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String Msg) {
-		this.msg = Msg;
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
 	}
 
 	public T getObj() {
