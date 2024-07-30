@@ -1,13 +1,13 @@
 package com.arthpay.arthpay_java;
 
-import org.springframework.http.HttpStatusCode;
+//import org.springframework.http.HttpStatusCode;
 
 public class ResponsePojo<T> {
 
 //	private HttpStatusCode statusCode;
 	private int statusCode;
 	
-	private String errMsg;
+	private String msg;
 	
 	private T obj;
 	
@@ -16,16 +16,16 @@ public class ResponsePojo<T> {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ResponsePojo(int sttusCode, String errMsg) {
+	public ResponsePojo(int sttusCode, String msg) {
 		super();
 		this.statusCode = sttusCode;
-		this.errMsg = errMsg;
+		this.msg = msg;
 	}
 	
-	public ResponsePojo(int sttusCode, String errMsg, T obj) {
+	public ResponsePojo(int sttusCode, String msg, T obj) {
 		super();
 		this.statusCode = sttusCode;
-		this.errMsg = errMsg;
+		this.msg = msg;
 		this.obj = obj;
 	}
 
@@ -37,12 +37,12 @@ public class ResponsePojo<T> {
 		this.statusCode = statusCode;
 	}
 
-	public String getErrMsg() {
-		return errMsg;
+	public String getMsg() {
+		return msg;
 	}
 
-	public void setErrMsg(String errMsg) {
-		this.errMsg = errMsg;
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
 	public T getObj() {
