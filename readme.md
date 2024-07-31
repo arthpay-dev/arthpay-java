@@ -28,16 +28,18 @@ try {
 	
 	OrderPojo orderDetails = new OrderPojo();
 	orderDetails.setOrderInfo("MER_ORD_001"); //order id by merchant
-	orderDetails.setCurrency("INR");
+	orderDetails.setCurrency("INR"); //currency : INR for Indian Rupees
 	orderDetails.setAmount("500"); //5 rs in paisa i.e. 5*100;
 	
 	CustomerPojo customerDetails = new CustomerPojo();
-	customerDetails.setFirstName("John");
-	customerDetails.setLastName("Doe");
-	customerDetails.setChAddrStreet("John Nagar Road");
-	customerDetails.setChAddrCity("Mulund");
-	customerDetails.setChAddrState("Maharashtra");
-	customerDetails.setChAddrZip("4000001");
+	customerDetails.setFirstName("John"); //customers first name
+	customerDetails.setLastName("Doe"); //customer's last name
+	customerDetails.setChAddrStreet("John Nagar Road"); //customer's street address
+	customerDetails.setChAddrCity("Mulund"); //customer's city
+	customerDetails.setChAddrState("Maharashtra"); //customer's State
+	customerDetails.setChAddrZip("4000001"); ///customer's zip code
+	customerDetails.setChEmail("support@arthpay.com"); // customer's email
+	customerDetails.setChMobile("+919876543210");
 	
 	CreateOrderRequest orderObj = new CreateOrderRequest();
 	orderObj.setCustomerDetails(customerDetails);
