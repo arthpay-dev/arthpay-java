@@ -7,6 +7,8 @@ public class CustomerPojo {
 	private String chAddrCity;
 	private String chAddrState;
 	private String chAddrZip;
+	private String chEmail;
+	private String chMobile;
 	
 	public String getFirstName() {
 		return firstName;
@@ -43,6 +45,18 @@ public class CustomerPojo {
 	}
 	public void setChAddrZip(String chAddrZip) {
 		this.chAddrZip = chAddrZip;
+	}
+	public String getChEmail() {
+		return chEmail;
+	}
+	public void setChEmail(String chEmail) {
+		this.chEmail = chEmail;
+	}
+	public String getChMobile() {
+		return chMobile;
+	}
+	public void setChMobile(String chMobile) {
+		this.chMobile = chMobile;
 	}
 	
 	
